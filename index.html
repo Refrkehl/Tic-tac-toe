@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link href="./vendor/normalize.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet">
+    <title>Tic Tac Toe</title>
+</head>
+
+<body class="page">
+    <div class="page-container">
+        <main class="main">
+            <section class="new-game__menu">
+                <div class="new-game__logo"></div>
+                <div class="new-game__picker-container">
+                    <h1 class="new-game__heading">Pick player 1's mark</h1>
+                    <div class="new-game__picker">
+                        <div class="new-game__cross">
+
+                        </div>
+                        <div class="new-game__circle">
+
+                        </div>
+                    </div>
+                    <p class="new-game__hint">remember: x goes first</p>
+                </div>
+                <div class="new-game__buttons">
+                    <button class="new-game__vs-cpu" type="button">New game (vs cpu)</button>
+                    <button class="new-game__vs-player" type="button">New game (vs player)</button>
+                </div>
+            </section>
+
+            <section class="game-field">
+                <div class="game-field__header">
+                    <div class="game-field__logo"></div>
+                    <div class="game-field__turn"></div>
+                    <button class="game-field__restart" type="button"></button>
+                </div>
+
+                <div class="game-field__container">
+                    <div class="game-field__cell"></div>
+                    <div class="game-field__cell"></div>
+                    <div class="game-field__cell"></div>
+                    <div class="game-field__cell"></div>
+                    <div class="game-field__cell"></div>
+                    <div class="game-field__cell"></div>
+                    <div class="game-field__cell"></div>
+                    <div class="game-field__cell"></div>
+                    <div class="game-field__cell"></div>
+                </div>
+
+                <div class="game-field__footer">
+                    <div class="game-field__cross-score">
+                        <h2 class="cross-score__heading"></h2>
+                        <p class="cross-score__value"></p>
+                    </div>
+                    <div class="game-field__ties">
+                        <h2 class="ties__heading">ties</h2>
+                        <p class="ties__value"></p>
+                    </div>
+                    <div class="game-field__circle-score">
+                        <h2 class="circle__heading"></h2>
+                        <p class="circle__value"></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    
+    </div>
+</body>
