@@ -13,62 +13,133 @@
 
 <body class="page">
     <div class="page-container">
-        <main class="main">
-            <section class="new-game__menu">
+        <main class="main-content">
+            <section class="new-game__menu hidden">
                 <div class="new-game__logo"></div>
                 <div class="new-game__picker-container">
                     <h1 class="new-game__heading">Pick player 1's mark</h1>
                     <div class="new-game__picker">
-                        <div class="new-game__cross">
-
+                        <div class="new-game__cross sign-picker">
+                            <img class="sign-img" src="./images/icon-x-outline-silver.svg">
                         </div>
-                        <div class="new-game__circle">
-
+                        <div class="new-game__circle sign-picker">
+                            <img class="sign-img" src="./images/icon-o-outline-darkNavy.svg">
                         </div>
                     </div>
                     <p class="new-game__hint">remember: x goes first</p>
                 </div>
                 <div class="new-game__buttons">
-                    <button class="new-game__vs-cpu" type="button">New game (vs cpu)</button>
-                    <button class="new-game__vs-player" type="button">New game (vs player)</button>
+                    <button class="new-game__vs-cpu button-text" type="button">New game (vs cpu)</button>
+                    <button class="new-game__vs-player button-text" type="button">New game (vs player)</button>
                 </div>
             </section>
 
             <section class="game-field">
                 <div class="game-field__header">
-                    <div class="game-field__logo"></div>
-                    <div class="game-field__turn"></div>
-                    <button class="game-field__restart" type="button"></button>
+                    <div class="game-field__logo new-game__logo"></div>
+                    <div class="game-field__turn">
+                        <img class="game-field__turn-icon" src="./images/icon-x-outline-silver.svg">
+                        <p class="game-field__turn-text">Turn</p>
+                    </div>
+                    <button class="game-field__restart" type="button">
+                        <img class="game-field__restart-icon" src="./images/icon-restart.svg" alt="restart">
+                    </button>
                 </div>
 
                 <div class="game-field__container">
-                    <div class="game-field__cell"></div>
-                    <div class="game-field__cell"></div>
-                    <div class="game-field__cell"></div>
-                    <div class="game-field__cell"></div>
-                    <div class="game-field__cell"></div>
-                    <div class="game-field__cell"></div>
-                    <div class="game-field__cell"></div>
-                    <div class="game-field__cell"></div>
-                    <div class="game-field__cell"></div>
+                    <div id="cell-one" class="game-field__cell">
+                        <img class="game-field__cell-img" src="">
+                    </div>
+                    <div id="cell-two" class="game-field__cell">
+                        <img class="game-field__cell-img" src="">
+                    </div>
+                    <div id="cell-three" class="game-field__cell">
+                        <img class="game-field__cell-img" src="">
+                    </div>
+                    <div id="cell-four" class="game-field__cell">
+                        <img class="game-field__cell-img" src="">
+                    </div>
+                    <div id="cell-five" class="game-field__cell">
+                        <img class="game-field__cell-img" src="">
+                    </div>
+                    <div id="cell-six" class="game-field__cell">
+                        <img class="game-field__cell-img" src="">
+                    </div>
+                    <div id="cell-seven" class="game-field__cell">
+                        <img class="game-field__cell-img" src="">
+                    </div>
+                    <div id="cell-eight" class="game-field__cell">
+                        <img class="game-field__cell-img" src="">
+                    </div>
+                    <div id="cell-nine" class="game-field__cell">
+                        <img class="game-field__cell-img" src="">
+                    </div>
                 </div>
 
                 <div class="game-field__footer">
-                    <div class="game-field__cross-score">
-                        <h2 class="cross-score__heading"></h2>
-                        <p class="cross-score__value"></p>
+                    <div class="game-field__score-container game-field__cross-score">
+                        <h2 class="score__heading cross-score__heading">X</h2>
+                        <p class="score__value  cross-score__value">0</p>
                     </div>
-                    <div class="game-field__ties">
-                        <h2 class="ties__heading">ties</h2>
-                        <p class="ties__value"></p>
+                    <div class="game-field__score-container game-field__ties">
+                        <h2 class="score__heading ties__heading">ties</h2>
+                        <p class="score__value ties__value">0</p>
                     </div>
-                    <div class="game-field__circle-score">
-                        <h2 class="circle__heading"></h2>
-                        <p class="circle__value"></p>
+                    <div class="game-field__score-container game-field__circle-score">
+                        <h2 class="score__heading circle__heading">O</h2>
+                        <p class="score__value  circle__value">0</p>
                     </div>
                 </div>
             </section>
         </main>
+
+        <!---------------popups-------------->
+        <div class="popup yellow-theme hidden">
+            <div class="popup__container">
+                <p class="popup__text"></p>
+                <div class="popup__heading-container">
+                    <img class="popup__heading-img" src="" alt="">
+                    <h2 class="popup__heading"></h2>
+                </div>
+                <div class="popup__buttons-container">
+                    <button class="popup__quit-button" type="button"></button>
+                    <button class="popup__reset-button" type="button"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="popup blue-theme hidden">
+            <div class="popup__container">
+                <p class="popup__text"></p>
+                <div class="popup__heading-container">
+                    <img class="popup__heading-img" src="" alt="">
+                    <h2 class="popup__heading"></h2>
+                </div>
+                <div class="popup__buttons-container">
+                    <button class="popup__quit-button" type="button"></button>
+                    <button class="popup__reset-button" type="button"></button>
+                </div>
+            </div>
+        </div>
     
+        <div class="popup default-theme hidden">
+            <div class="popup__container">
+                <h2 class="popup__heading">Restart game?</h2>
+                <div class="popup__buttons-container">
+                    <button class="popup__quit-button" type="button">no, cancel</button>
+                    <button class="popup__reset-button" type="button">yes, restart</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="popup default-theme hidden">
+            <div class="popup__container">
+                <h2 class="popup__heading">Round tied</h2>
+                <div class="popup__buttons-container">
+                    <button class="popup__quit-button" type="button">quit</button>
+                    <button class="popup__reset-button" type="button">next Round</button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
