@@ -252,6 +252,14 @@
     min-width: 96px;
 }
 
+.x-win {
+    background-color: var(--blue);
+}
+
+.o-win {
+    background-color: var(--yellow);
+}
+
 .game-field__footer {
     display: flex;
     flex-direction: row;
