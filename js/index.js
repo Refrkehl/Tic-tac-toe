@@ -12,7 +12,9 @@ const winCombinations = [
 const fieldCells = document.querySelectorAll('.game-field__cell'); //ячейки игрового поля
 
 const pickX = document.querySelector('.new-game__cross'); //выбор иконки
+const imgX = pickX.querySelector('.cross-img');
 const pickO = document.querySelector('.new-game__circle'); //выбор иконки
+const imgO = pickO.querySelector('.circle-img');
 const vsCpuBtn = document.querySelector('.new-game__vs-cpu'); //кнопка меню игры против компьютера
 const vsPlayerBtn = document.querySelector('.new-game__vs-player'); //кнопка меню игры против другого игрока
 
@@ -26,3 +28,20 @@ const yellowPopup = document.querySelector('.yellow-theme'); //желтый по
 const bluePopup = document.querySelector('.blue-theme'); //синий попап
 const restartPopup = document.querySelector('.restart'); //рестарт игры
 const roundTiedPopup = document.querySelector('.round-tied'); //попап игры "ничья"
+
+pickX.addEventListener('click', pickedX);
+pickO.addEventListener('click', pickedO);
+
+function pickedX() {
+    pickO.classList.remove('picked');
+    imgO.setAttribute('src', "../images/icon-o-outline-silver.svg");
+    pickX.classList.add('picked');
+    imgX.setAttribute('src', "../images/icon-x-outline-darkNavy.svg");
+}
+
+function pickedO() {
+    pickX.classList.remove('picked');
+    imgX.setAttribute('src', "../images/icon-x-outline-silver.svg");
+    pickO.classList.add('picked');
+    imgO.setAttribute('src', "../images/icon-o-outline-darkNavy.svg");
+}

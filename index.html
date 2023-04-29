@@ -14,16 +14,16 @@
 <body class="page">
     <div class="page-container">
         <main class="main-content">
-            <section class="new-game__menu hidden">
+            <section class="new-game__menu ">
                 <div class="new-game__logo"></div>
                 <div class="new-game__picker-container">
                     <h1 class="new-game__heading">Pick player 1's mark</h1>
                     <div class="new-game__picker">
                         <div class="new-game__cross sign-picker">
-                            <img class="sign-img" src="./images/icon-x-outline-silver.svg">
+                            <img class="sign-img cross-img" src="./images/icon-x-outline-silver.svg">
                         </div>
-                        <div class="new-game__circle sign-picker">
-                            <img class="sign-img" src="./images/icon-o-outline-darkNavy.svg">
+                        <div class="new-game__circle sign-picker picked">
+                            <img class="sign-img circle-img" src="./images/icon-o-outline-darkNavy.svg">
                         </div>
                     </div>
                     <p class="new-game__hint">remember: x goes first</p>
@@ -34,9 +34,9 @@
                 </div>
             </section>
 
-            <section class="game-field">
+            <section class="game-field hidden">
                 <div class="game-field__header">
-                    <div class="game-field__logo new-game__logo"></div>
+                    <div class="game-field__logo"></div>
                     <div class="game-field__turn">
                         <img class="game-field__turn-icon" src="./images/icon-x-outline-silver.svg">
                         <p class="game-field__turn-text">Turn</p>
@@ -142,4 +142,5 @@
             </div>
         </div>
     </div>
+    <script src="./js/index.js"></script>
 </body>
