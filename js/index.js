@@ -45,3 +45,18 @@ function pickedO() {
     pickO.classList.add('picked');
     imgO.setAttribute('src', "../images/icon-o-outline-darkNavy.svg");
 }
+
+
+function getField () {
+    const newarr = Array.prototype.map.call(fieldCells, ({id}) => id);
+    let num = newarr.length - 1;
+    let arar = newarr[num].split('', 2);
+    let arr1 = []
+    
+    for (let i = 0; i <= arar[0]; i++) {
+        arr1[i] = [];
+        for (let j = 0; j <= arar[1]; j++) {
+            arr1[i][j] = document.getElementById(`${i}${j}`);
+        }
+    }
+}
