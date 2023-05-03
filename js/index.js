@@ -9,8 +9,10 @@ const winCombinations = [
     [3,6,9],
 ]
 
-const fieldCells = document.querySelectorAll('.game-field__cell'); //ячейки игрового поля
-
+let fieldArray = []
+//let player1 = 'X';
+let player = 'x';
+const newGameMenu = document.querySelector('.new-game__menu'); //контейнер меню выбора игры
 const pickX = document.querySelector('.new-game__cross'); //выбор иконки
 const imgX = pickX.querySelector('.cross-img');
 const pickO = document.querySelector('.new-game__circle'); //выбор иконки
@@ -19,8 +21,9 @@ const vsCpuBtn = document.querySelector('.new-game__vs-cpu'); //кнопка м�
 const vsPlayerBtn = document.querySelector('.new-game__vs-player'); //кнопка меню игры против другого игрока
 
 const restartButton = document.querySelector('.game-field__restart'); //кнопка рестарта игры
+const fieldSection = document.querySelector('.game-field'); // секция с игрой
 const gameField = document.querySelector('.game-field__container'); //поле игры
-
+const fieldCells = document.querySelectorAll('.game-field__cell'); //ячейки игрового поля
 const quitButton = document.querySelector('.popup__quit-button'); //выход из игры
 const resetButton = document.querySelector('.popup__reset-button'); //кнопка сброса
 
@@ -47,16 +50,36 @@ function pickedO() {
 }
 
 
-function getField () {
+function getField() {
     const newarr = Array.prototype.map.call(fieldCells, ({id}) => id);
     let num = newarr.length - 1;
     let arar = newarr[num].split('', 2);
-    let arr1 = []
+    
     
     for (let i = 0; i <= arar[0]; i++) {
-        arr1[i] = [];
+        fieldArray [i] = [];
         for (let j = 0; j <= arar[1]; j++) {
-            arr1[i][j] = document.getElementById(`${i}${j}`);
+            fieldArray [i][j] = document.getElementById(`${i}${j}`).value;
         }
     }
 }
+
+function menuGameToggle(){
+    newGameMenu.classList.toggle('hidden');
+    fieldSection.classList.toggle('hidden');
+}
+
+vsCpuBtn.addEventListener('click', function () {
+    menuGameToggle();
+    getField();
+});
+vsPlayerBtn.addEventListener('click', menuGameToggle)
+fieldCells.forEach((cell) => {
+    cell.addEventListener('click', function(evt){
+        evt.target.value = player;
+        player === "x" ? (player = "o") : (player = "x");
+        evt.target.disabled = true;
+        getField();
+        console.log(fieldArray);
+    })
+});
