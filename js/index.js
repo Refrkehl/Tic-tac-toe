@@ -1,12 +1,12 @@
 const winCombinations = [
-    [1,2,3],
-    [4,5,6],
-    [7,8,9],
-    [3,5,7],
-    [1,5,9],
-    [1,4,7],
-    [2,5,8],
-    [3,6,9],
+    [00,01,02],
+    [10,11,12],
+    [20,21,22],
+    [20,11,02],
+    [00,11,22],
+    [00,10,20],
+    [01,11,21],
+    [02,12,22],
 ]
 
 let fieldArray = []
@@ -73,7 +73,9 @@ vsCpuBtn.addEventListener('click', function () {
     menuGameToggle();
     getField();
 });
-vsPlayerBtn.addEventListener('click', menuGameToggle)
+
+vsPlayerBtn.addEventListener('click', menuGameToggle);
+
 fieldCells.forEach((cell) => {
     cell.addEventListener('click', function(evt){
         evt.target.value = player;
@@ -83,3 +85,18 @@ fieldCells.forEach((cell) => {
         console.log(fieldArray);
     })
 });
+
+
+function getWinner(cells, combs) {
+    for (let comb of combs) {
+		if (
+			cells[comb[0][1]][comb[0][1]] === cells[comb[1]] &&
+			cells[comb[1]] == cells[comb[2]].textContent &&
+			cells[comb[0]] != ''
+		) {
+			return true;
+		}
+	}
+	
+	return false;
+}
