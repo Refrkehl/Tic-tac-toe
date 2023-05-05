@@ -1,4 +1,4 @@
-const winCombinations = [
+let winCombinations = [
     [00,01,02],
     [10,11,12],
     [20,21,22],
@@ -57,9 +57,9 @@ function getField() {
     
     
     for (let i = 0; i <= arar[0]; i++) {
-        fieldArray [i] = [];
+        fieldArray[i] = [];
         for (let j = 0; j <= arar[1]; j++) {
-            fieldArray [i][j] = document.getElementById(`${i}${j}`).value;
+            fieldArray[i][j] = document.getElementById(`${i}${j}`).value;
         }
     }
 }
@@ -87,16 +87,17 @@ fieldCells.forEach((cell) => {
 });
 
 
-function getWinner(cells, combs) {
-    for (let comb of combs) {
-		if (
-			cells[comb[0][1]][comb[0][1]] === cells[comb[1]] &&
-			cells[comb[1]] == cells[comb[2]].textContent &&
-			cells[comb[0]] != ''
+function getWinner() {
+
+    for (let winCombination of winCombinations) {
+        
+		if (fieldArray[winCombination[0][0][0]][winCombination[0][0][1]] == fieldArray[winCombination[0][1][0]][winCombination[0][1][1]] &&
+			fieldArray[winCombination[0][1][0]][winCombination[0][1][1]] == fieldArray[winCombination[0][2][0]][winCombination[0][2][1]] &&
+			fieldArray[winCombination[0][0][0]][winCombination[0][0][1]] != ''
 		) {
 			return true;
-		}
-	}
-	
-	return false;
+		} else {
+            return false;
+        }
+    }
 }
