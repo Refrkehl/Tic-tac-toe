@@ -1,17 +1,19 @@
 let winCombinations = [
-    [00,01,02],
-    [10,11,12],
-    [20,21,22],
-    [20,11,02],
-    [00,11,22],
-    [00,10,20],
-    [01,11,21],
-    [02,12,22],
+    ['00','01','02'],
+    ['10','11','12'],
+    ['20','21','22'],
+    ['20','11','02'],
+    ['00','11','22'],
+    ['00','10','20'],
+    ['01','11','21'],
+    ['02','12','22'],
 ]
-
+const TIED = 'tied';
 let fieldArray = []
-//let player1 = 'X';
-let player = 'x';
+let player1;
+let activePlayer = 'x';
+let isCpu = false;
+
 const newGameMenu = document.querySelector('.new-game__menu'); //контейнер меню выбора игры
 const pickX = document.querySelector('.new-game__cross'); //выбор иконки
 const imgX = pickX.querySelector('.cross-img');
@@ -40,6 +42,7 @@ function pickedX() {
     imgO.setAttribute('src', "../images/icon-o-outline-silver.svg");
     pickX.classList.add('picked');
     imgX.setAttribute('src', "../images/icon-x-outline-darkNavy.svg");
+    player1 = 'x';
 }
 
 function pickedO() {
@@ -47,6 +50,7 @@ function pickedO() {
     imgX.setAttribute('src', "../images/icon-x-outline-silver.svg");
     pickO.classList.add('picked');
     imgO.setAttribute('src', "../images/icon-o-outline-darkNavy.svg");
+    player1 = 'o';
 }
 
 
@@ -54,7 +58,6 @@ function getField() {
     const newarr = Array.prototype.map.call(fieldCells, ({id}) => id);
     let num = newarr.length - 1;
     let arar = newarr[num].split('', 2);
-    
     
     for (let i = 0; i <= arar[0]; i++) {
         fieldArray[i] = [];
@@ -71,33 +74,109 @@ function menuGameToggle(){
 
 vsCpuBtn.addEventListener('click', function () {
     menuGameToggle();
+    isCpu = true;
+    if (player1 == 'x') {
+        return;
+    }
     getField();
+    cpu();
 });
 
 vsPlayerBtn.addEventListener('click', menuGameToggle);
 
 fieldCells.forEach((cell) => {
     cell.addEventListener('click', function(evt){
-        evt.target.value = player;
-        player === "x" ? (player = "o") : (player = "x");
+        evt.target.value = activePlayer;
         evt.target.disabled = true;
         getField();
+        const winner = isWinner();
         console.log(fieldArray);
+        
+        if (winner) {
+            return showModal(winner);
+        }
+        activePlayer === "x" ? (activePlayer = "o") : (activePlayer = "x");
+        //замена иконки turn
+        if (isCpu) {
+            cpu();
+        }
     })
 });
 
 
-function getWinner() {
+function isWinner() {
+    if (isTied()) {
+        return TIED;
+    }
 
     for (let winCombination of winCombinations) {
         
-		if (fieldArray[winCombination[0][0][0]][winCombination[0][0][1]] == fieldArray[winCombination[0][1][0]][winCombination[0][1][1]] &&
-			fieldArray[winCombination[0][1][0]][winCombination[0][1][1]] == fieldArray[winCombination[0][2][0]][winCombination[0][2][1]] &&
-			fieldArray[winCombination[0][0][0]][winCombination[0][0][1]] != ''
+		if (fieldArray[winCombination[0][0]][winCombination[0][1]] == 
+            fieldArray[winCombination[1][0]][winCombination[1][1]] &&
+			fieldArray[winCombination[1][0]][winCombination[1][1]] == 
+            fieldArray[winCombination[2][0]][winCombination[2][1]] &&
+			fieldArray[winCombination[0][0]][winCombination[0][1]] != ''
 		) {
-			return true;
-		} else {
-            return false;
-        }
+			return winCombination;
+		} 
     }
 }
+
+function isTied() {
+    for(let i = 0; i < fieldArray.length; i++) {
+        for (let j = 0; j < fieldArray[i].length; j++) {
+            if (fieldArray[i][j] == '') {
+                return false;
+            } 
+        }
+    }
+    return true;
+}
+
+function showModal (state) {
+    if (state == TIED) {
+        //modalka tied 
+        console.log('tied')
+        return;
+    } 
+    //show winner
+    if (activePlayer == 'x') {
+        //x modal
+        console.log('win x')
+        return;
+    }
+    console.log('win o');
+    //o modal win
+}
+
+function cpu() {
+    const emptyCells = [];
+    let cpuPlayer = 'x';
+
+    for (let i = 0; i < fieldArray.length; i++) {
+        for (let j = 0; j < fieldArray[i].length; j++) {
+            if (fieldArray[i][j] == '') {
+                emptyCells.push(`${i}${j}`);
+            } 
+        }
+    }
+
+    if (player1 == 'x') {
+        cpuPlayer = 'o';
+    }
+
+    const randomizer = Math.floor(Math.random() * emptyCells.length);
+    document.getElementById(emptyCells[randomizer]).value = cpuPlayer;
+    document.getElementById(emptyCells[randomizer]).disabled = true;
+    getField();
+
+    const winner = isWinner();
+
+    if (winner) {
+        return showModal(winner);
+    }
+
+    activePlayer === "x" ? (activePlayer = "o") : (activePlayer = "x");
+       //замена иконки turn
+}
+
