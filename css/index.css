@@ -290,6 +290,18 @@
     max-height: 40px;
 }
 
+.game-field__cell:hover {
+    background-image: url(../images/icon-x-outline.svg);
+}
+
+.game-field__cell[value='x'] {
+    background-image: url(../images/icon-x-outline-darkNavy.svg);
+}
+
+.game-field__cell[value='o'] {
+    background-image: url(../images/icon-o-outline-darkNavy.svg);
+}
+
 .x-win {
     background-color: var(--blue);
 }

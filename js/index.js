@@ -164,7 +164,7 @@ function cpu() {
     if (player1 == 'x') {
         cpuPlayer = 'o';
     }
-
+    
     const randomizer = Math.floor(Math.random() * emptyCells.length);
     document.getElementById(emptyCells[randomizer]).value = cpuPlayer;
     document.getElementById(emptyCells[randomizer]).disabled = true;
@@ -179,4 +179,9 @@ function cpu() {
     activePlayer === "x" ? (activePlayer = "o") : (activePlayer = "x");
        //замена иконки turn
 }
+
+if (activePlayer === "x") {
+    activePlayer = "o";
+} 
+    activePlayer = "x";
 
